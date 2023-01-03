@@ -15,26 +15,17 @@ public class Main {
                     Education.values()[new Random().nextInt(Education.values().length)])
             );
         }
-// Подсчет количества несовершеннолетних в городе
+        // Подсчет количества несовершеннолетних в городе
         long count = persons.stream()
                 .filter(person -> person.getAge() < 18)
                 .count();
         System.out.println("Количество несовершеннолетних граждан в городе - " + count);
 
         // Получение списка пригодных к службе в армии
-        long count1 = persons.stream()
-                .filter(person -> person.getAge() >= 18 && person.getAge() < 27)
-                .count();
-        System.out.println("Количество граждан, пригодных к службе в армии - " + count1);
-
         List<String> abledToArmy = persons.stream()
                 .filter(person -> person.getAge() >= 18 && person.getAge() < 27)
                 .map(person -> person.getFamily())
                 .collect(Collectors.toList());
-        System.out.println("Список граждан, пригодных к службе в армии:");
-        for (String s : abledToArmy) {
-            System.out.println(s);
-        }
 
         // Получение и сортировка списка женщин с высшим образованием
         List<String> highEducatedWomen = persons.stream()
@@ -44,10 +35,6 @@ public class Main {
                 .sorted(Comparator.comparing(person -> person.getFamily()))
                 .map(person -> person.getFamily())
                 .collect(Collectors.toList());
-        System.out.println("Список работоспособных женщин с высшим образованием:");
-        for (String s : highEducatedWomen) {
-            System.out.println(s);
-        }
 
         // Получение и сортировка списка мужчин с высшим образованием
         List<String> highEducatedMen = persons.stream()
@@ -57,9 +44,5 @@ public class Main {
                 .sorted(Comparator.comparing(person -> person.getFamily()))
                 .map(person -> person.getFamily())
                 .collect(Collectors.toList());
-        System.out.println("Список работоспособных мужчин с высшим образованием:");
-        for (String s : highEducatedMen) {
-            System.out.println(s);
-        }
     }
 }
